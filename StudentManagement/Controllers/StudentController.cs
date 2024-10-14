@@ -23,7 +23,7 @@ namespace StudentManagement.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User")] // Only Users can create students
+        //[Authorize(Roles = "User")] // Only Users can create students
         //Get all the records from Student entity
         public async Task<ActionResult<IEnumerable<StudentDto>>> GetAll()
          {

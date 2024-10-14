@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Student-Management-WFA", "Student-Management-WFA\Student-Management-WFA.csproj", "{CE890112-9CB6-4DA9-8539-9C062D20BC1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{D7B2B402-F985-4B19-B8AF-5BED79E8CC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7B2B402-F985-4B19-B8AF-5BED79E8CC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7B2B402-F985-4B19-B8AF-5BED79E8CC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE890112-9CB6-4DA9-8539-9C062D20BC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE890112-9CB6-4DA9-8539-9C062D20BC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE890112-9CB6-4DA9-8539-9C062D20BC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE890112-9CB6-4DA9-8539-9C062D20BC1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
