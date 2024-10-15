@@ -69,7 +69,7 @@ namespace StudentManagement.API.Controllers
         
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult> Update(int id, UpdateStudentReqDto updateStudentReqDto)
+        public async Task<ActionResult<StudentDto>> Update(int id, UpdateStudentReqDto updateStudentReqDto)
         {
             var studentModel = await _unitOfWork.Student.GetByIdAsync(id);
             if (studentModel == null) return NotFound();
@@ -77,10 +77,32 @@ namespace StudentManagement.API.Controllers
             _mapper.Map(updateStudentReqDto, studentModel);
 
             await _unitOfWork.SaveAsync();
-            var studentDto = _mapper.Map<CourseDto>(studentModel);
+            var studentDto = _mapper.Map<StudentDto>(studentModel);
             return Ok(studentDto);
 
         }
+
+
+
+
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult<CourseDto>> Update(int id, UpdateCourseReqDto updateCourseDto)
+        //{
+        //    var courseModel = await _unitOfWork.Course.GetByIdAsync(id);
+        //    if (courseModel == null) return NotFound();
+
+        //    // Use AutoMapper to map the updated fields
+        //    _mapper.Map(updateCourseDto, courseModel);
+
+        //    await _unitOfWork.SaveAsync();
+        //    var courseDto = _mapper.Map<CourseDto>(courseModel);
+        //    return Ok(courseDto);
+        //}
+
+
+
+
+
 
         //Done with Async
         [HttpDelete]

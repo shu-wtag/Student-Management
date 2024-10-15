@@ -67,8 +67,9 @@ namespace Student_Management_WFA
             // Get the selected row
             var selectedRow = StudentsDataGridView.SelectedRows[0];
             var studentId = (int)selectedRow.Cells["ID"].Value;
-            var studentName = nameTextBox.Text; // Assuming there is  a textbox for Name
-            var studentEmail = emailTextBox.Text; // Assuming there is a textbox for Email
+            var studentName = nameTextBox.Text; 
+            var studentEmail = emailTextBox.Text; 
+
 
             // Create the updated Student object
             var updatedStudent = new Student
@@ -89,10 +90,7 @@ namespace Student_Management_WFA
                     response.EnsureSuccessStatusCode(); // Throws if the status code is not success
 
                     MessageBox.Show("Student updated successfully!");
-                }
-                catch (HttpRequestException ex)
-                {
-                    MessageBox.Show($"Request error: {ex.Message}");
+                    await LoadStudents();
                 }
                 catch (Exception ex)
                 {
