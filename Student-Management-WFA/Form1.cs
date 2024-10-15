@@ -12,6 +12,18 @@ public partial class Form1 : Form
     {
 
     }
+    private void ClearTextBoxes()
+    {
+        foreach (Control ctr in this.Controls)
+        {
+            if (ctr is TextBox)
+            {
+                TextBox txt = ctr as TextBox;
+                txt.Clear();
+            }
+        }
+        NameTextBox.Clear();
+    }
 
     private async void Add_Click(object sender, EventArgs e)
     {
@@ -37,6 +49,7 @@ public partial class Form1 : Form
                 response.EnsureSuccessStatusCode(); // Throws if the status code is not success
 
                 MessageBox.Show("Student added successfully!");
+                ClearTextBoxes();
             }
             catch (Exception ex)
             {
