@@ -12,7 +12,7 @@ namespace StudentManagement.API.Controllers
     [Route("api/account")]
     [ApiController]
 
-    
+
     public class AccountController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
@@ -55,6 +55,7 @@ namespace StudentManagement.API.Controllers
                             {
                                 UserName = user.UserName,
                                 Email = user.Email,
+                                Role = "User",
                                 Token = await _tokenService.CreateToken(user)
                             });
         }
@@ -87,6 +88,7 @@ namespace StudentManagement.API.Controllers
                             {
                                 UserName = appUser.UserName,
                                 Email = appUser.Email,
+                                Role = "User",
                                 Token = await _tokenService.CreateToken(appUser)
                             });
 
@@ -101,7 +103,7 @@ namespace StudentManagement.API.Controllers
                     return StatusCode(500, createdUser.Errors);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

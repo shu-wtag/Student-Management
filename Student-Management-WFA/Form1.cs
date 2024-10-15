@@ -53,7 +53,25 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        ViewStudents f2 = new ViewStudents();
+        ViewStudents f2 = new();
         f2.Show();
+    }
+
+    private void SignUp_Click(object sender, EventArgs e)
+    {
+        RegisterForm registerForm = new();
+        registerForm.Show();
+    }
+
+    private void Courses_Click(object sender, EventArgs e)
+    {
+        CourseForm courseform = new();
+        courseform.Show();
+    }
+
+    private void SignIn_Click(object sender, EventArgs e)
+    {
+        LoginForm loginForm = new LoginForm();
+        loginForm.Show();
     }
 }

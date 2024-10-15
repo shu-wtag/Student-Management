@@ -36,19 +36,19 @@ builder.Services.AddAuthentication(options => {
     options.DefaultScheme =
     options.DefaultSignInScheme =
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
-    }).AddJwtBearer(options =>
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["JWT:Issuer"],
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration["JWT:Audience"],
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"]))
-        };
-    });
+        ValidateIssuer = true,
+        ValidIssuer = builder.Configuration["JWT:Issuer"],
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["JWT:Audience"],
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(
+            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"]))
+    };
+});
 
 
 //Add Entity Framework
@@ -113,14 +113,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
+// Ensure authentication is called before authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
-//Global Exception Middleware
-
+// Global Exception Middleware
 app.UseMiddleware<GlobalExceptionMiddleware>();
+
+app.MapControllers();
+
 
 app.Run();

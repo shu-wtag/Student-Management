@@ -35,6 +35,9 @@ partial class Form1
         EmailTextBox = new TextBox();
         Add = new Button();
         button1 = new Button();
+        SignUp = new Button();
+        SignIn = new Button();
+        Courses = new Button();
         SuspendLayout();
         // 
         // label1
@@ -105,11 +108,50 @@ partial class Form1
         button1.UseVisualStyleBackColor = true;
         button1.Click += button1_Click;
         // 
+        // SignUp
+        // 
+        SignUp.BackColor = SystemColors.ActiveBorder;
+        SignUp.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        SignUp.Location = new Point(205, 309);
+        SignUp.Name = "SignUp";
+        SignUp.Size = new Size(86, 28);
+        SignUp.TabIndex = 7;
+        SignUp.Text = "Sign Up";
+        SignUp.UseVisualStyleBackColor = false;
+        SignUp.Click += SignUp_Click;
+        // 
+        // SignIn
+        // 
+        SignIn.BackColor = SystemColors.ActiveBorder;
+        SignIn.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        SignIn.Location = new Point(322, 309);
+        SignIn.Name = "SignIn";
+        SignIn.Size = new Size(86, 28);
+        SignIn.TabIndex = 7;
+        SignIn.Text = "Sign In";
+        SignIn.UseVisualStyleBackColor = false;
+        SignIn.Click += SignIn_Click;
+        // 
+        // Courses
+        // 
+        Courses.BackColor = SystemColors.ActiveBorder;
+        Courses.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        Courses.Location = new Point(439, 309);
+        Courses.Name = "Courses";
+        Courses.Size = new Size(86, 28);
+        Courses.TabIndex = 7;
+        Courses.Text = "Courses";
+        Courses.UseVisualStyleBackColor = false;
+        Courses.Click += Courses_Click;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
+        Controls.Add(Courses);
+        Controls.Add(SignIn);
+        Controls.Add(SignUp);
         Controls.Add(button1);
         Controls.Add(Add);
         Controls.Add(EmailTextBox);
@@ -134,4 +176,7 @@ partial class Form1
     private TextBox EmailTextBox;
     private Button Add;
     private Button button1;
+    private Button SignUp;
+    private Button SignIn;
+    private Button Courses;
 }
