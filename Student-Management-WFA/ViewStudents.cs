@@ -24,36 +24,6 @@ namespace Student_Management_WFA
 
         }
 
-        //Showing all students data from DB
-        //private async void button1_Click(object sender, EventArgs e)
-        //{
-        //    using (HttpClient _httpClient = new HttpClient())
-        //    {
-        //        _httpClient.BaseAddress = new Uri("https://localhost:7271/api/Student");
-
-        //        try
-        //        {
-        //            HttpResponseMessage response = await _httpClient.GetAsync("");
-        //            response.EnsureSuccessStatusCode();
-
-        //            var students = await response.Content.ReadAsAsync<IEnumerable<Student>>();
-
-        //            // Create a new list of anonymous objects with only the selected properties
-        //            var filteredStudents = students.Select(s => new
-        //            {
-        //                s.ID,
-        //                s.Name,
-        //                s.Email
-        //            });
-
-        //            StudentsDataGridView.DataSource = filteredStudents.ToList();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show($"An unexpected error occurred: {ex.Message}");
-        //        }
-        //    }
-        //}
 
         private async void button1_Click(object sender, EventArgs e)
         {
@@ -66,20 +36,15 @@ namespace Student_Management_WFA
             using (HttpClient _httpClient = new HttpClient())
             {
                 _httpClient.BaseAddress = new Uri("https://localhost:7271/api/Student");
-                string token = Properties.Settings.Default.AuthToken; // Retrieve the stored token
+                string token = Properties.Settings.Default.AuthToken;
 
-                if (string.IsNullOrEmpty(token))
-                {
-                    MessageBox.Show("Authorization token is missing.");
-                    return;
-                }
-
-                // Set the Authorization header
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 try
                 {
                     HttpResponseMessage response = await _httpClient.GetAsync("");
+                    response.EnsureSuccessStatusCode();
+
                     if (response.IsSuccessStatusCode)
                     {
                         var students = await response.Content.ReadAsAsync<IEnumerable<Student>>();
@@ -98,10 +63,11 @@ namespace Student_Management_WFA
             }
         }
 
-        // Method to check if the user is authenticated
+
         private bool IsUserAuthenticated()
         {
             var token = Properties.Settings.Default.AuthToken;
+            MessageBox.Show("Token stored: " + token);
             return !string.IsNullOrEmpty(token);
         }
 
