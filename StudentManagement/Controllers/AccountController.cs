@@ -43,22 +43,25 @@ namespace StudentManagement.API.Controllers
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
 
             if (user == null) return Unauthorized("Invalid username");
-            var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
+            var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
             if (!result.Succeeded)
             {
                 return Unauthorized("Invalid Credentials");
             }
 
-            return Ok(
-                            new NewUserDto
-                            {
-                                UserName = user.UserName,
-                                Email = user.Email,
-                                Role = "User",
-                                Token = await _tokenService.CreateToken(user)
-                            });
+            // Generate the token
+            var token = await _tokenService.CreateToken(user);
+
+            return Ok(new NewUserDto
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Role = "User",
+                Token = token
+            });
         }
+
 
 
 

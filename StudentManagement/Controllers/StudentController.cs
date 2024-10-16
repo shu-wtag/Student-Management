@@ -5,6 +5,10 @@ using StudentManagement.Domain.Repository;
 using AutoMapper;
 using StudentManagement.API.DTOs.Course;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 
 namespace StudentManagement.API.Controllers
@@ -23,18 +27,18 @@ namespace StudentManagement.API.Controllers
         }
 
         [HttpGet]
-        [Authorize] // Only Users can create students
-        //Get all the records from Student entity
+        [Authorize]
         public async Task<ActionResult<IEnumerable<StudentDto>>> GetAll()
-         {
-          var entities = await _unitOfWork.Student.GetAllAsync();
-          var studentDto = _mapper.Map<IEnumerable<StudentDto>>(entities);
-          return Ok(studentDto);
-         }
+        {
 
+            var entities = await _unitOfWork.Student.GetAllAsync();
+            var studentDto = _mapper.Map<IEnumerable<StudentDto>>(entities);
+            return Ok(studentDto);
+        }
 
+        
         //Get Specific id result
-        [HttpGet("{id:int}")] //route constrain validation
+        [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)
         {
             var StudentFromRepo = await _unitOfWork.Student.GetByIdAsync(id);
@@ -81,26 +85,6 @@ namespace StudentManagement.API.Controllers
             return Ok(studentDto);
 
         }
-
-
-
-
-        //[HttpPut("{id}")]
-        //public async Task<ActionResult<CourseDto>> Update(int id, UpdateCourseReqDto updateCourseDto)
-        //{
-        //    var courseModel = await _unitOfWork.Course.GetByIdAsync(id);
-        //    if (courseModel == null) return NotFound();
-
-        //    // Use AutoMapper to map the updated fields
-        //    _mapper.Map(updateCourseDto, courseModel);
-
-        //    await _unitOfWork.SaveAsync();
-        //    var courseDto = _mapper.Map<CourseDto>(courseModel);
-        //    return Ok(courseDto);
-        //}
-
-
-
 
 
 

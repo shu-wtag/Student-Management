@@ -42,6 +42,7 @@ partial class Form1
         // 
         // label1
         // 
+        label1.Anchor = AnchorStyles.None;
         label1.AutoSize = true;
         label1.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
         label1.Location = new Point(306, 39);
@@ -53,6 +54,7 @@ partial class Form1
         // 
         // label2
         // 
+        label2.Anchor = AnchorStyles.None;
         label2.AutoSize = true;
         label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         label2.Location = new Point(254, 116);
@@ -63,6 +65,7 @@ partial class Form1
         // 
         // label3
         // 
+        label3.Anchor = AnchorStyles.None;
         label3.AutoSize = true;
         label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         label3.Location = new Point(257, 171);
@@ -73,6 +76,7 @@ partial class Form1
         // 
         // NameTextBox
         // 
+        NameTextBox.Anchor = AnchorStyles.None;
         NameTextBox.Location = new Point(367, 118);
         NameTextBox.Name = "NameTextBox";
         NameTextBox.Size = new Size(123, 23);
@@ -80,6 +84,7 @@ partial class Form1
         // 
         // EmailTextBox
         // 
+        EmailTextBox.Anchor = AnchorStyles.None;
         EmailTextBox.Location = new Point(367, 169);
         EmailTextBox.Name = "EmailTextBox";
         EmailTextBox.Size = new Size(123, 23);
@@ -87,6 +92,7 @@ partial class Form1
         // 
         // Add
         // 
+        Add.Anchor = AnchorStyles.None;
         Add.BackColor = SystemColors.ActiveCaption;
         Add.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         Add.Location = new Point(257, 236);
@@ -99,6 +105,7 @@ partial class Form1
         // 
         // button1
         // 
+        button1.Anchor = AnchorStyles.None;
         button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         button1.Location = new Point(388, 236);
         button1.Name = "button1";
@@ -110,6 +117,7 @@ partial class Form1
         // 
         // SignUp
         // 
+        SignUp.Anchor = AnchorStyles.None;
         SignUp.BackColor = SystemColors.ActiveBorder;
         SignUp.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         SignUp.Location = new Point(205, 309);
@@ -122,6 +130,7 @@ partial class Form1
         // 
         // SignIn
         // 
+        SignIn.Anchor = AnchorStyles.None;
         SignIn.BackColor = SystemColors.ActiveBorder;
         SignIn.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         SignIn.Location = new Point(322, 309);
@@ -134,6 +143,7 @@ partial class Form1
         // 
         // Courses
         // 
+        Courses.Anchor = AnchorStyles.None;
         Courses.BackColor = SystemColors.ActiveBorder;
         Courses.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
         Courses.Location = new Point(439, 309);

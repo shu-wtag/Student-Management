@@ -21,5 +21,10 @@ namespace Student_Management_WFA
         {
 
         }
+
+        private void Edit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

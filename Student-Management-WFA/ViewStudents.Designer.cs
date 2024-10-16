@@ -40,15 +40,17 @@
             // 
             // StudentsDataGridView
             // 
+            StudentsDataGridView.Anchor = AnchorStyles.None;
             StudentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            StudentsDataGridView.Location = new Point(0, 96);
+            StudentsDataGridView.Location = new Point(135, 109);
             StudentsDataGridView.Name = "StudentsDataGridView";
-            StudentsDataGridView.Size = new Size(801, 355);
+            StudentsDataGridView.Size = new Size(412, 241);
             StudentsDataGridView.TabIndex = 0;
             StudentsDataGridView.CellMouseClick += StudentsDataGridView_CellMouseClick;
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.None;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(12, 12);
             button1.Name = "button1";
@@ -60,6 +62,7 @@
             // 
             // Edit
             // 
+            Edit.Anchor = AnchorStyles.None;
             Edit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Edit.Location = new Point(483, 12);
             Edit.Name = "Edit";
@@ -71,6 +74,7 @@
             // 
             // Delete
             // 
+            Delete.Anchor = AnchorStyles.None;
             Delete.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Delete.Location = new Point(483, 49);
             Delete.Name = "Delete";
@@ -82,6 +86,7 @@
             // 
             // nameTextBox
             // 
+            nameTextBox.Anchor = AnchorStyles.None;
             nameTextBox.Location = new Point(258, 16);
             nameTextBox.Name = "nameTextBox";
             nameTextBox.Size = new Size(193, 23);
@@ -89,6 +94,7 @@
             // 
             // emailTextBox
             // 
+            emailTextBox.Anchor = AnchorStyles.None;
             emailTextBox.Location = new Point(258, 57);
             emailTextBox.Name = "emailTextBox";
             emailTextBox.Size = new Size(193, 23);
@@ -96,6 +102,7 @@
             // 
             // Refresh
             // 
+            Refresh.Anchor = AnchorStyles.None;
             Refresh.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Refresh.Location = new Point(12, 49);
             Refresh.Name = "Refresh";
@@ -118,6 +125,7 @@
             Controls.Add(button1);
             Controls.Add(StudentsDataGridView);
             Name = "ViewStudents";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ViewStudents";
             ((System.ComponentModel.ISupportInitialize)StudentsDataGridView).EndInit();
             ResumeLayout(false);

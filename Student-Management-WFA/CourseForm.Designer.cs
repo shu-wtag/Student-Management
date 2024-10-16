@@ -41,9 +41,10 @@
             // 
             // CourseName
             // 
+            CourseName.Anchor = AnchorStyles.None;
             CourseName.AutoSize = true;
             CourseName.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CourseName.Location = new Point(182, 103);
+            CourseName.Location = new Point(204, 171);
             CourseName.Name = "CourseName";
             CourseName.Size = new Size(113, 19);
             CourseName.TabIndex = 0;
@@ -51,9 +52,10 @@
             // 
             // Credit
             // 
+            Credit.Anchor = AnchorStyles.None;
             Credit.AutoSize = true;
             Credit.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Credit.Location = new Point(240, 145);
+            Credit.Location = new Point(262, 213);
             Credit.Name = "Credit";
             Credit.Size = new Size(55, 19);
             Credit.TabIndex = 0;
@@ -61,9 +63,10 @@
             // 
             // CourseDetails
             // 
+            CourseDetails.Anchor = AnchorStyles.None;
             CourseDetails.AutoSize = true;
             CourseDetails.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CourseDetails.Location = new Point(268, 28);
+            CourseDetails.Location = new Point(262, 97);
             CourseDetails.Name = "CourseDetails";
             CourseDetails.Size = new Size(207, 32);
             CourseDetails.TabIndex = 1;
@@ -71,23 +74,26 @@
             // 
             // CrsNameTextBox
             // 
-            CrsNameTextBox.Location = new Point(339, 103);
+            CrsNameTextBox.Anchor = AnchorStyles.None;
+            CrsNameTextBox.Location = new Point(361, 171);
             CrsNameTextBox.Name = "CrsNameTextBox";
             CrsNameTextBox.Size = new Size(146, 23);
             CrsNameTextBox.TabIndex = 0;
             // 
             // CreditTextBox
             // 
-            CreditTextBox.Location = new Point(339, 145);
+            CreditTextBox.Anchor = AnchorStyles.None;
+            CreditTextBox.Location = new Point(361, 213);
             CreditTextBox.Name = "CreditTextBox";
             CreditTextBox.Size = new Size(146, 23);
             CreditTextBox.TabIndex = 1;
             // 
             // Add
             // 
+            Add.Anchor = AnchorStyles.None;
             Add.BackColor = SystemColors.ActiveCaption;
             Add.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Add.Location = new Point(182, 190);
+            Add.Location = new Point(204, 258);
             Add.Name = "Add";
             Add.Size = new Size(75, 27);
             Add.TabIndex = 2;
@@ -97,20 +103,23 @@
             // 
             // Edit
             // 
+            Edit.Anchor = AnchorStyles.None;
             Edit.BackColor = SystemColors.ActiveCaption;
             Edit.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Edit.Location = new Point(279, 190);
+            Edit.Location = new Point(301, 258);
             Edit.Name = "Edit";
             Edit.Size = new Size(75, 27);
             Edit.TabIndex = 3;
             Edit.Text = "Edit";
             Edit.UseVisualStyleBackColor = false;
+            Edit.Click += Edit_Click;
             // 
             // Update
             // 
+            Update.Anchor = AnchorStyles.None;
             Update.BackColor = SystemColors.ActiveCaption;
             Update.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Update.Location = new Point(374, 190);
+            Update.Location = new Point(396, 258);
             Update.Name = "Update";
             Update.Size = new Size(75, 27);
             Update.TabIndex = 4;
@@ -119,9 +128,10 @@
             // 
             // Clear
             // 
+            Clear.Anchor = AnchorStyles.None;
             Clear.BackColor = SystemColors.ActiveCaption;
             Clear.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Clear.Location = new Point(471, 190);
+            Clear.Location = new Point(493, 258);
             Clear.Name = "Clear";
             Clear.Size = new Size(75, 27);
             Clear.TabIndex = 5;
@@ -143,6 +153,7 @@
             Controls.Add(Credit);
             Controls.Add(CourseName);
             Name = "CourseForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CourseForm";
             ResumeLayout(false);
             PerformLayout();

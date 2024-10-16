@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,29 +24,72 @@ namespace Student_Management_WFA
 
         }
 
-        //Showing all students data from DB 
+        //Showing all students data from DB
+        //private async void button1_Click(object sender, EventArgs e)
+        //{
+        //    using (HttpClient _httpClient = new HttpClient())
+        //    {
+        //        _httpClient.BaseAddress = new Uri("https://localhost:7271/api/Student");
+
+        //        try
+        //        {
+        //            HttpResponseMessage response = await _httpClient.GetAsync("");
+        //            response.EnsureSuccessStatusCode();
+
+        //            var students = await response.Content.ReadAsAsync<IEnumerable<Student>>();
+
+        //            // Create a new list of anonymous objects with only the selected properties
+        //            var filteredStudents = students.Select(s => new
+        //            {
+        //                s.ID,
+        //                s.Name,
+        //                s.Email
+        //            });
+
+        //            StudentsDataGridView.DataSource = filteredStudents.ToList();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show($"An unexpected error occurred: {ex.Message}");
+        //        }
+        //    }
+        //}
+
         private async void button1_Click(object sender, EventArgs e)
         {
+            if (!IsUserAuthenticated())
+            {
+                MessageBox.Show("You must be logged in to access this feature.");
+                return;
+            }
+
             using (HttpClient _httpClient = new HttpClient())
             {
                 _httpClient.BaseAddress = new Uri("https://localhost:7271/api/Student");
+                string token = Properties.Settings.Default.AuthToken; // Retrieve the stored token
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    MessageBox.Show("Authorization token is missing.");
+                    return;
+                }
+
+                // Set the Authorization header
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 try
                 {
                     HttpResponseMessage response = await _httpClient.GetAsync("");
-                    response.EnsureSuccessStatusCode();
-
-                    var students = await response.Content.ReadAsAsync<IEnumerable<Student>>();
-
-                    // Create a new list of anonymous objects with only the selected properties
-                    var filteredStudents = students.Select(s => new
+                    if (response.IsSuccessStatusCode)
                     {
-                        s.ID,
-                        s.Name,
-                        s.Email
-                    });
-
-                    StudentsDataGridView.DataSource = filteredStudents.ToList();
+                        var students = await response.Content.ReadAsAsync<IEnumerable<Student>>();
+                        var filteredStudents = students.Select(s => new { s.ID, s.Name, s.Email });
+                        StudentsDataGridView.DataSource = filteredStudents.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -53,6 +97,15 @@ namespace Student_Management_WFA
                 }
             }
         }
+
+        // Method to check if the user is authenticated
+        private bool IsUserAuthenticated()
+        {
+            var token = Properties.Settings.Default.AuthToken;
+            return !string.IsNullOrEmpty(token);
+        }
+
+
 
         //Update Data
         private async void Edit_Click(object sender, EventArgs e)
@@ -124,11 +177,9 @@ namespace Student_Management_WFA
                 return;
             }
 
-            // Get the selected row
             var selectedRow = StudentsDataGridView.SelectedRows[0];
             var studentId = (int)selectedRow.Cells["ID"].Value;
 
-            // Show confirmation dialog
             var confirmResult = MessageBox.Show(
                 "Do you want to delete this information?",
                 "Confirm Delete",
@@ -144,13 +195,12 @@ namespace Student_Management_WFA
 
                     try
                     {
-                        // Send a DELETE request to the API
+                        
                         var response = await _httpClient.DeleteAsync(studentId.ToString());
                         response.EnsureSuccessStatusCode(); // Throws if the status code is not success
 
                         MessageBox.Show("Student deleted successfully!");
 
-                        // Optionally, refresh the DataGridView to reflect changes
                         await LoadStudents();
                     }
                     catch (HttpRequestException ex)
@@ -164,11 +214,6 @@ namespace Student_Management_WFA
                 }
             }
         }
-
-
-
-
-
 
 
         private async Task LoadStudents()
