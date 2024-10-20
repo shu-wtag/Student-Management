@@ -23,7 +23,7 @@ namespace StudentManagement.API.Controllers
 
         [HttpGet("test-error")]
         public IActionResult TestError()
-        {
+        {  
             throw new InvalidOperationException("This is a test exception to check global exception handling.");
         }
 

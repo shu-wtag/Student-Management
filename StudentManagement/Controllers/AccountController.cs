@@ -18,11 +18,13 @@ namespace StudentManagement.API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<AppUser> _signinManager;
+        private readonly HashSet<AppUser> _usersCache;
         public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signinManager = signInManager;
+            _usersCache = new HashSet<AppUser>(userManager.Users.ToList()); //users fromthe database
         }
 
         [HttpGet("error")]
@@ -40,9 +42,8 @@ namespace StudentManagement.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
-
-            if (user == null) return Unauthorized("Invalid username");
+            // Check in the cache with case-insensitive comparison
+            var user = _usersCache.FirstOrDefault(x => x.UserName.Equals(loginDto.Username, StringComparison.OrdinalIgnoreCase));
 
             var result = await _signinManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
             if (!result.Succeeded)
@@ -61,6 +62,7 @@ namespace StudentManagement.API.Controllers
                 Token = token
             });
         }
+
 
 
 
@@ -86,6 +88,7 @@ namespace StudentManagement.API.Controllers
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                     if (roleResult.Succeeded)
                     {
+                        _usersCache.Add(appUser);
                         return Ok(
                             new NewUserDto
                             {
