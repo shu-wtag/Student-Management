@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using StudentManagement.DataAccess.Implementation;
+﻿using Microsoft.AspNetCore.Mvc;
 using StudentManagement.API.DTOs.Teacher;
 using StudentManagement.Domain.Repository;
+using AutoMapper;
+using StudentManagement.API.DTOs.Course;
 
 namespace StudentManagement.API.Controllers
 {
@@ -11,23 +11,34 @@ namespace StudentManagement.API.Controllers
     public class TeacherController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public TeacherController(IUnitOfWork unitOfWork)
+        public TeacherController(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
+
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult<IEnumerable<TeacherDto>>> GetAll()
         {
-            var TeachersModel = _unitOfWork.Teacher.GetAll().Select(u => u.ID).ToList();
-            return Ok(TeachersModel);
+            
+            var entities = await _unitOfWork.Teacher.GetAllAsync();
+            var TeacherDto = _mapper.Map<IEnumerable<TeacherDto>>(entities);
+            return Ok(TeacherDto);
         }
-        //[HttpGet("{id}")]
-        //public ActionResult Get(int id)
-        //{
-        //    var TeacherFromRepo = _unitOfWork.Teacher.GetById(id);
-        //    return Ok(TeacherFromRepo.ToTeacherDto());
-        //}
+
+
+
+        //Get Specific id result
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<TeacherDto>> GetById(int id)
+        {
+            var teacherFromRepo = await _unitOfWork.Teacher.GetByIdAsync(id);
+
+            var teacherDto = _mapper.Map<TeacherDto>(teacherFromRepo);
+            return Ok(teacherDto);
+        }
     }
     
 }

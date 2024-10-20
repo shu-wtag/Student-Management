@@ -9,6 +9,7 @@ namespace StudentManagement.Domain.Repository
 {
     public interface ITeacher : IGenericRepository<Teacher>
     {
+        
 
     }
 }
