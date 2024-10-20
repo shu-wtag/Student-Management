@@ -26,17 +26,31 @@ namespace StudentManagement.API.Controllers
             _mapper = mapper;
         }
 
+        //[HttpGet]
+        //[Authorize]
+        //public async Task<ActionResult<IEnumerable<StudentDto>>> GetAll()
+        //{
+
+        //    var entities = await _unitOfWork.Student.GetAllAsync();
+        //    var studentDto = _mapper.Map<IEnumerable<StudentDto>>(entities);
+        //    return Ok(studentDto);
+        //}
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<IEnumerable<StudentDto>>> GetAll()
         {
+            // Call the stored procedure to get all students
+            var entities = await _unitOfWork.Student.GetAllStudents();
 
-            var entities = await _unitOfWork.Student.GetAllAsync();
+            // Map the results to DTOs
             var studentDto = _mapper.Map<IEnumerable<StudentDto>>(entities);
+
+            // Return the result
             return Ok(studentDto);
         }
 
-        
+
+
         //Get Specific id result
         [HttpGet("{id:int}")]
         public async Task<ActionResult> Get(int id)

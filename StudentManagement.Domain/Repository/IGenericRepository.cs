@@ -25,7 +25,7 @@ namespace StudentManagement.Domain.Repository
         public Task RemoveRangeAsync(IEnumerable<T> entities);
         public Task AddAsync(T entity);
         public Task<T?> GetByIdAsync(int id);
-
+   
 
 
 

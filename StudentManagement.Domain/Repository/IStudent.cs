@@ -9,6 +9,7 @@ namespace StudentManagement.Domain.Repository
 {
     public interface IStudent : IGenericRepository<Student>
     {
+        public Task<List<Student>> GetAllStudents();
         public Task<IEnumerable<Student>> GetStudentsWithEnrollments();
 
 

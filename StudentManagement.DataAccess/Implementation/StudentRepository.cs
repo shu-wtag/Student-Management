@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.DataAccess.Implementation
 {
+
     public class StudentRepository : GenericRepository<Student>, IStudent
     {
+        private readonly ApplicationDbContext _context;
         public StudentRepository(ApplicationDbContext context) : base(context)
         {
-            
+            _context = context;
         }
 
         public async Task<IEnumerable<Student>> GetStudentsWithEnrollments()
@@ -22,5 +24,13 @@ namespace StudentManagement.DataAccess.Implementation
             var studentWithEnrollments = await _context.Students.Include(u => u.Enrollments).ToListAsync();
             return studentWithEnrollments;
         }
+        public async Task<List<Student>> GetAllStudents()
+        {
+            return await _context.Students
+                                 .FromSqlRaw("EXEC GetAllStudents")
+                                 .ToListAsync();
+        }
+
+
     }
 }

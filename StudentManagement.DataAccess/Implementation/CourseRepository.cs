@@ -1,4 +1,5 @@
-﻿using StudentManagement.DataAccess.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentManagement.DataAccess.Context;
 using StudentManagement.Domain.Entities;
 using StudentManagement.Domain.Repository;
 using System;
@@ -15,5 +16,6 @@ namespace StudentManagement.DataAccess.Implementation
         {
             
         }
+        
     }
 }

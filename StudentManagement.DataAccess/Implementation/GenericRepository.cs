@@ -4,6 +4,7 @@ using StudentManagement.Domain.Entities;
 using StudentManagement.Domain.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,12 @@ namespace StudentManagement.DataAccess.Implementation
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         public readonly ApplicationDbContext _context;
+        private readonly Microsoft.EntityFrameworkCore.DbSet<T> _dbSet;
 
         public GenericRepository(ApplicationDbContext context )
         {
             _context = context;
+            _dbSet = context.Set<T>();
         }
 
 
@@ -87,6 +90,11 @@ namespace StudentManagement.DataAccess.Implementation
         {
             throw new NotImplementedException();
         }
+
+        //public async Task<IEnumerable<T>> ExecuteStoredProcedureAsync(string storedProcedureName, params object[] parameters)
+        //{
+        //    return await _dbSet.FromSqlRaw($"EXEC {storedProcedureName}", parameters).ToListAsync();
+        //}
 
         //public void FirstOrDefault(T entity)
         //{

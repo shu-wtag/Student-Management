@@ -34,17 +34,14 @@
             Login = new Label();
             label1 = new Label();
             PasswordTextbox = new TextBox();
-            button1 = new Button();
             LogOut = new Button();
-            StudentsDataGridView = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)StudentsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // SignIn
             // 
             SignIn.Anchor = AnchorStyles.None;
             SignIn.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            SignIn.Location = new Point(347, 271);
+            SignIn.Location = new Point(405, 270);
             SignIn.Name = "SignIn";
             SignIn.Size = new Size(94, 32);
             SignIn.TabIndex = 9;
@@ -76,7 +73,7 @@
             Login.Anchor = AnchorStyles.None;
             Login.AutoSize = true;
             Login.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Login.Location = new Point(343, 101);
+            Login.Location = new Point(344, 111);
             Login.Name = "Login";
             Login.Size = new Size(98, 32);
             Login.TabIndex = 7;
@@ -101,22 +98,10 @@
             PasswordTextbox.Size = new Size(100, 23);
             PasswordTextbox.TabIndex = 10;
             // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.None;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(505, 271);
-            button1.Name = "button1";
-            button1.Size = new Size(147, 31);
-            button1.TabIndex = 11;
-            button1.Text = "GetAlldata";
-            button1.UseVisualStyleBackColor = true;
-            //button1.Click += button1_Click;
-            // 
             // LogOut
             // 
             LogOut.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LogOut.Location = new Point(214, 270);
+            LogOut.Location = new Point(295, 270);
             LogOut.Name = "LogOut";
             LogOut.Size = new Size(75, 32);
             LogOut.TabIndex = 12;
@@ -124,23 +109,12 @@
             LogOut.UseVisualStyleBackColor = true;
             LogOut.Click += LogOut_Click;
             // 
-            // StudentsDataGridView
-            // 
-            StudentsDataGridView.Anchor = AnchorStyles.None;
-            StudentsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            StudentsDataGridView.Location = new Point(581, 12);
-            StudentsDataGridView.Name = "StudentsDataGridView";
-            StudentsDataGridView.Size = new Size(207, 241);
-            StudentsDataGridView.TabIndex = 13;
-            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(StudentsDataGridView);
             Controls.Add(LogOut);
-            Controls.Add(button1);
             Controls.Add(SignIn);
             Controls.Add(PasswordTextbox);
             Controls.Add(label1);
@@ -150,7 +124,6 @@
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
-            ((System.ComponentModel.ISupportInitialize)StudentsDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -163,8 +136,6 @@
         private Label Login;
         private Label label1;
         private TextBox PasswordTextbox;
-        private Button button1;
         private Button LogOut;
-        private DataGridView StudentsDataGridView;
     }
 }

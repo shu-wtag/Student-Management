@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Newtonsoft.Json.Linq;
 using StudentManagement.API.DTOs.Student;
 using System;
 using System.Collections.Generic;
@@ -63,19 +64,20 @@ namespace Student_Management_WFA
             }
         }
 
-
         private bool IsUserAuthenticated()
         {
             var token = Properties.Settings.Default.AuthToken;
-            MessageBox.Show("Token stored: " + token);
             return !string.IsNullOrEmpty(token);
         }
-
-
 
         //Update Data
         private async void Edit_Click(object sender, EventArgs e)
         {
+            if (!IsUserAuthenticated())
+            {
+                MessageBox.Show("You must be logged in to access this feature.");
+                return;
+            }
             // Check if a row is selected in the DataGridView
             if (StudentsDataGridView.SelectedRows.Count == 0)
             {
@@ -101,6 +103,9 @@ namespace Student_Management_WFA
             using (HttpClient _httpClient = new HttpClient())
             {
                 _httpClient.BaseAddress = new Uri("https://localhost:7271/api/Student/ID");
+                string token = Properties.Settings.Default.AuthToken;
+
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 try
                 {
@@ -136,6 +141,11 @@ namespace Student_Management_WFA
         //Delete a particular record
         private async void Delete_Click(object sender, EventArgs e)
         {
+            if (!IsUserAuthenticated())
+            {
+                MessageBox.Show("You must be logged in to access this feature.");
+                return;
+            }
             // Check if a row is selected in the DataGridView
             if (StudentsDataGridView.SelectedRows.Count == 0)
             {
@@ -158,6 +168,8 @@ namespace Student_Management_WFA
                 using (HttpClient _httpClient = new HttpClient())
                 {
                     _httpClient.BaseAddress = new Uri($"https://localhost:7271/api/Student/");
+                    string token = Properties.Settings.Default.AuthToken;
+                    _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                     try
                     {
@@ -184,9 +196,16 @@ namespace Student_Management_WFA
 
         private async Task LoadStudents()
         {
+            if (!IsUserAuthenticated())
+            {
+                MessageBox.Show("You must be logged in to access this feature.");
+                return;
+            }
             using (HttpClient _httpClient = new HttpClient())
             {
                 _httpClient.BaseAddress = new Uri("https://localhost:7271/api/Student");
+                string token = Properties.Settings.Default.AuthToken;
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
                 try
                 {
