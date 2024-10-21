@@ -3,6 +3,9 @@ using StudentManagement.API.DTOs.Teacher;
 using StudentManagement.Domain.Repository;
 using AutoMapper;
 using StudentManagement.API.DTOs.Course;
+using StudentManagement.API.DTOs.Teacher;
+using Microsoft.AspNetCore.Authorization;
+using StudentManagement.API.DTOs.Student;
 
 namespace StudentManagement.API.Controllers
 {
@@ -20,15 +23,55 @@ namespace StudentManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TeacherDto>>> GetAll()
+        //public async Task<ActionResult<IEnumerable<TeacherDto>>> GetAll()
+        //{
+        //    try
+        //    {
+        //        var teacherFromRepo = await _unitOfWork.Teacher.GetAllAsync();
+        //        if (teacherFromRepo == null || !teacherFromRepo.Any())
+        //            return NotFound();
+
+        //        var teacherDtos = _mapper.Map<IEnumerable<TeacherDto>>(teacherFromRepo);
+        //        return Ok(teacherDtos);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
+        [Authorize]
+        public async Task<ActionResult<IList<TeacherDto>>> GetAll()
         {
-            
-            var entities = await _unitOfWork.Teacher.GetAllAsync();
-            var TeacherDto = _mapper.Map<IEnumerable<TeacherDto>>(entities);
-            return Ok(TeacherDto);
+            try
+            {
+                var teachersFromRepo = await _unitOfWork.Teacher.GetAllAsync();
+
+                var teacherDtos = _mapper.Map<IEnumerable<TeacherDto>>(teachersFromRepo);
+                return Ok(teacherDtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
 
+
+        //Async with stored proceedure
+        //public async Task<ActionResult<IEnumerable<TeacherDto>>> GetAll()
+        //{
+        //    try
+        //    {
+        //        var entities = await _unitOfWork.Teacher.GetAllTeachers();
+        //        var teacherDto = _mapper.Map<IEnumerable<TeacherDto>>(entities);
+        //        return Ok(teacherDto);
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
 
         //Get Specific id result
         [HttpGet("{id:int}")]
@@ -38,6 +81,20 @@ namespace StudentManagement.API.Controllers
 
             var teacherDto = _mapper.Map<TeacherDto>(teacherFromRepo);
             return Ok(teacherDto);
+        }
+        [HttpPut]
+        [Route("{id}")]
+        public async Task<ActionResult<TeacherDto>> Update(int id, UpdateTeacherDto updateTeacherDto)
+        {
+            var teacherModel = await _unitOfWork.Teacher.GetByIdAsync(id);
+            if (teacherModel == null) return NotFound();
+
+            _mapper.Map(updateTeacherDto, teacherModel);
+
+            await _unitOfWork.SaveAsync();
+            var teacherDto = _mapper.Map<TeacherDto>(teacherModel);
+            return Ok(teacherDto);
+
         }
     }
     

@@ -52,5 +52,10 @@ namespace Student_Management_WFA
             TcloginForm = null;
             this.Show();
         }
+
+        private void studentDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

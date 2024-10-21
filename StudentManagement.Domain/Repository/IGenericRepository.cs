@@ -10,8 +10,7 @@ namespace StudentManagement.Domain.Repository
     public interface IGenericRepository<T> where T : class
     {
         T GetById(int id);
-        IEnumerable<T> GetAll(); //IEnumerable will execute select query on server side, load data in-memory on client side and then filter data.
-
+        IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
 
         void Add(T entity);
@@ -19,7 +18,7 @@ namespace StudentManagement.Domain.Repository
         //void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
 
-        public Task<IEnumerable<T>> GetAllAsync();
+        public Task<IAsyncEnumerable<T>> GetAllAsync();
         public Task<IEnumerable<T>> ToListasync();
         public Task RemoveAsync(T entity);
         public Task RemoveRangeAsync(IEnumerable<T> entities);

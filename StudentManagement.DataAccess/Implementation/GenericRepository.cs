@@ -48,14 +48,14 @@ namespace StudentManagement.DataAccess.Implementation
         //    return await _context.Students.FindAsync(id);
         //}
 
-        public IEnumerable<T> GetAll()
-        {
-            return _context.Set<T>().ToList();
-        }
+        //public IEnumerable<T> GetAll()
+        //{
+        //    return _context.Set<T>().ToList();
+        //}
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IAsyncEnumerable<T>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return _context.Set<T>().AsAsyncEnumerable();
         }
 
         public T? GetById(int id)
@@ -89,6 +89,11 @@ namespace StudentManagement.DataAccess.Implementation
         public Task<IEnumerable<T>> ToListasync()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return _context.Set<T>().ToList();
         }
 
         //public async Task<IEnumerable<T>> ExecuteStoredProcedureAsync(string storedProcedureName, params object[] parameters)

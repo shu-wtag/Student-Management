@@ -28,15 +28,30 @@ namespace StudentManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CourseDto>>> GetAll()
-        {
-            var coursesFromRepo = await _unitOfWork.Course.GetAllAsync();
-            if (coursesFromRepo == null || !coursesFromRepo.Any())
-                return NotFound();
+        //public async Task<ActionResult<IEnumerable<CourseDto>>> GetAll()
+        //{
+        //    var entities = await _unitOfWork.Course.GetAllAsync();
 
-            // Use AutoMapper to map the courses to CourseDto
-            var courseDtos = _mapper.Map<IEnumerable<CourseDto>>(coursesFromRepo);
-            return Ok(courseDtos);
+        //    var courseDto = _mapper.Map<IEnumerable<CourseDto>>(entities);
+
+        //    return Ok(courseDto);
+        //}
+        public async Task<ActionResult<IList<CourseDto>>> GetAll()
+        {
+            try
+            {
+                var coursesFromRepo = await _unitOfWork.Course.GetAllAsync();
+                if (coursesFromRepo == null)
+                    return NotFound();
+
+                // Use AutoMapper to map the courses to CourseDto
+                var courseDtos = _mapper.Map<IEnumerable<CourseDto>>(coursesFromRepo);
+                return Ok(courseDtos);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("{id}")]

@@ -47,7 +47,7 @@ namespace Student_Management_WFA
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:7271/");
-                var json = JsonConvert.SerializeObject(registerDto); // Use Newtonsoft.Json
+                var json = JsonConvert.SerializeObject(registerDto); 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 try

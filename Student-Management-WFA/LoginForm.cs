@@ -58,6 +58,8 @@ namespace Student_Management_WFA
                     StoreToken(token);
                     MessageBox.Show("You have successfully signed in.");
                     ClearTextBoxes();
+                    AdminMenu adminMenu = new AdminMenu();
+                    adminMenu.Show();
                 }
                 else
                 {

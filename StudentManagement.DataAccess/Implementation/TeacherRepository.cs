@@ -18,7 +18,12 @@ namespace StudentManagement.DataAccess.Implementation
         {
             _context = context;
         }
-        
-       
+
+        public async Task<List<Teacher>> GetAllTeachers()
+        {
+            return await _context.Teachers
+                                 .FromSqlRaw("EXEC GetAllTeachers")
+                                 .ToListAsync();
+        }
     }
 }

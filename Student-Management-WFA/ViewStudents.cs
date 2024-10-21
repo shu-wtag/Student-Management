@@ -78,14 +78,14 @@ namespace Student_Management_WFA
                 MessageBox.Show("You must be logged in to access this feature.");
                 return;
             }
-            // Check if a row is selected in the DataGridView
+            
             if (StudentsDataGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No item is selected.");
                 return;
             }
 
-            // Get the selected row
+            
             var selectedRow = StudentsDataGridView.SelectedRows[0];
             var studentId = (int)selectedRow.Cells["ID"].Value;
             var studentName = nameTextBox.Text; 

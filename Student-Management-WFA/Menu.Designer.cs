@@ -94,7 +94,7 @@
             // 
             TeacherLogin.CheckOnClick = true;
             TeacherLogin.Name = "TeacherLogin";
-            TeacherLogin.Size = new Size(180, 22);
+            TeacherLogin.Size = new Size(147, 22);
             TeacherLogin.Text = "Teacher Login";
             TeacherLogin.Click += TeacherLogin_Click;
             // 

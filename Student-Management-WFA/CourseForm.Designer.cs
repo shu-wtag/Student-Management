@@ -34,9 +34,8 @@
             CrsNameTextBox = new TextBox();
             CreditTextBox = new TextBox();
             Add = new Button();
-            Edit = new Button();
-            Update = new Button();
             Clear = new Button();
+            Back = new Button();
             SuspendLayout();
             // 
             // CourseName
@@ -66,11 +65,12 @@
             CourseDetails.Anchor = AnchorStyles.None;
             CourseDetails.AutoSize = true;
             CourseDetails.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            CourseDetails.Location = new Point(262, 97);
+            CourseDetails.Location = new Point(285, 98);
             CourseDetails.Name = "CourseDetails";
-            CourseDetails.Size = new Size(207, 32);
+            CourseDetails.Size = new Size(170, 32);
             CourseDetails.TabIndex = 1;
-            CourseDetails.Text = "Course Details";
+            CourseDetails.Text = "Add Course";
+            CourseDetails.Click += CourseDetails_Click;
             // 
             // CrsNameTextBox
             // 
@@ -93,7 +93,7 @@
             Add.Anchor = AnchorStyles.None;
             Add.BackColor = SystemColors.ActiveCaption;
             Add.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Add.Location = new Point(204, 258);
+            Add.Location = new Point(342, 270);
             Add.Name = "Add";
             Add.Size = new Size(75, 27);
             Add.TabIndex = 2;
@@ -101,51 +101,38 @@
             Add.UseVisualStyleBackColor = false;
             Add.Click += Add_Click;
             // 
-            // Edit
-            // 
-            Edit.Anchor = AnchorStyles.None;
-            Edit.BackColor = SystemColors.ActiveCaption;
-            Edit.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Edit.Location = new Point(301, 258);
-            Edit.Name = "Edit";
-            Edit.Size = new Size(75, 27);
-            Edit.TabIndex = 3;
-            Edit.Text = "Edit";
-            Edit.UseVisualStyleBackColor = false;
-            Edit.Click += Edit_Click;
-            // 
-            // Update
-            // 
-            Update.Anchor = AnchorStyles.None;
-            Update.BackColor = SystemColors.ActiveCaption;
-            Update.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Update.Location = new Point(396, 258);
-            Update.Name = "Update";
-            Update.Size = new Size(75, 27);
-            Update.TabIndex = 4;
-            Update.Text = "Update";
-            Update.UseVisualStyleBackColor = false;
-            // 
             // Clear
             // 
             Clear.Anchor = AnchorStyles.None;
             Clear.BackColor = SystemColors.ActiveCaption;
             Clear.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Clear.Location = new Point(493, 258);
+            Clear.Location = new Point(432, 270);
             Clear.Name = "Clear";
             Clear.Size = new Size(75, 27);
             Clear.TabIndex = 5;
             Clear.Text = "Clear";
             Clear.UseVisualStyleBackColor = false;
+            Clear.Click += Clear_Click;
+            // 
+            // Back
+            // 
+            Back.BackColor = SystemColors.ActiveCaption;
+            Back.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            Back.Location = new Point(242, 267);
+            Back.Name = "Back";
+            Back.Size = new Size(75, 30);
+            Back.TabIndex = 6;
+            Back.Text = "Back";
+            Back.UseVisualStyleBackColor = false;
+            Back.Click += Back_Click;
             // 
             // CourseForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(Back);
             Controls.Add(Clear);
-            Controls.Add(Update);
-            Controls.Add(Edit);
             Controls.Add(Add);
             Controls.Add(CreditTextBox);
             Controls.Add(CrsNameTextBox);
@@ -167,8 +154,7 @@
         private TextBox CrsNameTextBox;
         private TextBox CreditTextBox;
         private Button Add;
-        private Button Edit;
-        private Button Update;
         private Button Clear;
+        private Button Back;
     }
 }
