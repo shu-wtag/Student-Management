@@ -27,13 +27,6 @@ namespace StudentManagement.API.Services
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.GivenName, user.Email)
             };
-
-            ////Add user roles to claim
-            //var userRoles = await _userManager.GetRolesAsync(user);
-            //foreach(var role in userRoles)
-            //{
-            //    claims.Add(new Claim(ClaimTypes.Role, role));
-            //}
             
             //Signing Credentials means what type of encryption do I want
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature); //_key is in appSettings.Json

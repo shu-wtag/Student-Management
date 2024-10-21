@@ -56,24 +56,6 @@ namespace StudentManagement.API.Controllers
             }
         }
 
-
-
-        //Async with stored proceedure
-        //public async Task<ActionResult<IEnumerable<TeacherDto>>> GetAll()
-        //{
-        //    try
-        //    {
-        //        var entities = await _unitOfWork.Teacher.GetAllTeachers();
-        //        var teacherDto = _mapper.Map<IEnumerable<TeacherDto>>(entities);
-        //        return Ok(teacherDto);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
-
-        //Get Specific id result
         [HttpGet("{id:int}")]
         public async Task<ActionResult<TeacherDto>> GetById(int id)
         {
@@ -82,6 +64,7 @@ namespace StudentManagement.API.Controllers
             var teacherDto = _mapper.Map<TeacherDto>(teacherFromRepo);
             return Ok(teacherDto);
         }
+
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult<TeacherDto>> Update(int id, UpdateTeacherDto updateTeacherDto)

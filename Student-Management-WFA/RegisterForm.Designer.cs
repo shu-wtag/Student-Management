@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             Register = new Label();
             Username = new Label();
             Email = new Label();
@@ -36,6 +37,8 @@
             EmailTextBox = new TextBox();
             PasswordTextBox = new TextBox();
             SignUp = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // Register
@@ -97,6 +100,7 @@
             EmailTextBox.Name = "EmailTextBox";
             EmailTextBox.Size = new Size(100, 23);
             EmailTextBox.TabIndex = 1;
+            EmailTextBox.Leave += EmailTextBox_Leave;
             // 
             // PasswordTextBox
             // 
@@ -118,6 +122,10 @@
             SignUp.UseVisualStyleBackColor = true;
             SignUp.Click += SignUp_Click;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -134,6 +142,7 @@
             Name = "RegisterForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterForm";
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,5 +157,6 @@
         private TextBox EmailTextBox;
         private TextBox PasswordTextBox;
         private Button SignUp;
+        private ErrorProvider errorProvider1;
     }
 }
