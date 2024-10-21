@@ -27,12 +27,11 @@ namespace Student_Management_WFA
         {
             if (e.Node.Tag is CourseDto selectedCourse)
             {
-                // Example: Display selected course details in a MessageBox
                 MessageBox.Show($"Course ID: {selectedCourse.ID}\nCredits: {selectedCourse.Credits}\nName: {selectedCourse.Course_Name}");
             }
             else if (e.Node.Tag is int credits)
             {
-                // Handle selection of the credits node if needed
+               
                 MessageBox.Show($"Credits: {credits}");
             }
         }
